@@ -8,9 +8,21 @@
 
 import UIKit
 
-class DemoMenuController: UITableViewController {
+
+protocol MenuControllerDelegate: class {
+    func menuViewController(controller: MenuViewController, didSelectIndex index: Int)
+}
+
+class MenuViewController: UITableViewController {
+    
+    weak var delegate: MenuControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate?.menuViewController(self, didSelectIndex: indexPath.row)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

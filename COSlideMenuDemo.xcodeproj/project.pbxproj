@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		49B339741BAED49E00277A89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339731BAED49E00277A89 /* AppDelegate.swift */; };
-		49B339761BAED49E00277A89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339751BAED49E00277A89 /* ViewController.swift */; };
 		49B339791BAED49E00277A89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B339771BAED49E00277A89 /* Main.storyboard */; };
 		49B3397B1BAED49E00277A89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B3397A1BAED49E00277A89 /* Assets.xcassets */; };
 		49B3397E1BAED49E00277A89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B3397C1BAED49E00277A89 /* LaunchScreen.storyboard */; };
 		49B339891BAED49E00277A89 /* COSlideMenuDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339881BAED49E00277A89 /* COSlideMenuDemoTests.swift */; };
 		49B339941BAED49E00277A89 /* COSlideMenuDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339931BAED49E00277A89 /* COSlideMenuDemoUITests.swift */; };
+		49B339A61BAED5B300277A89 /* COSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A51BAED5B300277A89 /* COSlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
+		49B339A81BAF388900277A89 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A71BAF388900277A89 /* SlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
+		49B339AA1BAF4C9C00277A89 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A91BAF4C9C00277A89 /* MenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		49D36BCD1BB13A48009262F6 /* SelectAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D36BCC1BB13A48009262F6 /* SelectAnimationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		49D36BCF1BB13E9C009262F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D36BCE1BB13E9C009262F6 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,6 @@
 /* Begin PBXFileReference section */
 		49B339701BAED49E00277A89 /* COSlideMenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COSlideMenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B339731BAED49E00277A89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49B339751BAED49E00277A89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		49B339781BAED49E00277A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49B3397A1BAED49E00277A89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49B3397D1BAED49E00277A89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,12 @@
 		49B3398F1BAED49E00277A89 /* COSlideMenuDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = COSlideMenuDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B339931BAED49E00277A89 /* COSlideMenuDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COSlideMenuDemoUITests.swift; sourceTree = "<group>"; };
 		49B339951BAED49E00277A89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49B339A51BAED5B300277A89 /* COSlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COSlideMenuController.swift; sourceTree = "<group>"; };
+		49B339A71BAF388900277A89 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		49B339A91BAF4C9C00277A89 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		49C37FE41BB19CF600106E44 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		49D36BCC1BB13A48009262F6 /* SelectAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAnimationViewController.swift; sourceTree = "<group>"; };
+		49D36BCE1BB13E9C009262F6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +86,7 @@
 		49B339671BAED49E00277A89 = {
 			isa = PBXGroup;
 			children = (
+				49C37FE41BB19CF600106E44 /* README.md */,
 				49B339721BAED49E00277A89 /* COSlideMenuDemo */,
 				49B339871BAED49E00277A89 /* COSlideMenuDemoTests */,
 				49B339921BAED49E00277A89 /* COSlideMenuDemoUITests */,
@@ -97,8 +107,12 @@
 		49B339721BAED49E00277A89 /* COSlideMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
+				49B339A41BAED5B300277A89 /* COSlideMenu */,
 				49B339731BAED49E00277A89 /* AppDelegate.swift */,
-				49B339751BAED49E00277A89 /* ViewController.swift */,
+				49B339A71BAF388900277A89 /* SlideMenuController.swift */,
+				49B339A91BAF4C9C00277A89 /* MenuViewController.swift */,
+				49D36BCE1BB13E9C009262F6 /* SettingsViewController.swift */,
+				49D36BCC1BB13A48009262F6 /* SelectAnimationViewController.swift */,
 				49B339771BAED49E00277A89 /* Main.storyboard */,
 				49B3397A1BAED49E00277A89 /* Assets.xcassets */,
 				49B3397C1BAED49E00277A89 /* LaunchScreen.storyboard */,
@@ -124,6 +138,14 @@
 			);
 			path = COSlideMenuDemoUITests;
 			sourceTree = "<group>";
+		};
+		49B339A41BAED5B300277A89 /* COSlideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				49B339A51BAED5B300277A89 /* COSlideMenuController.swift */,
+			);
+			path = COSlideMenu;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -255,8 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B339761BAED49E00277A89 /* ViewController.swift in Sources */,
+				49B339AA1BAF4C9C00277A89 /* MenuViewController.swift in Sources */,
+				49D36BCD1BB13A48009262F6 /* SelectAnimationViewController.swift in Sources */,
+				49B339A61BAED5B300277A89 /* COSlideMenuController.swift in Sources */,
 				49B339741BAED49E00277A89 /* AppDelegate.swift in Sources */,
+				49B339A81BAF388900277A89 /* SlideMenuController.swift in Sources */,
+				49D36BCF1BB13E9C009262F6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +509,7 @@
 				49B3399A1BAED49E00277A89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49B3399B1BAED49E00277A89 /* Build configuration list for PBXNativeTarget "COSlideMenuDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +518,7 @@
 				49B3399D1BAED49E00277A89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49B3399E1BAED49E00277A89 /* Build configuration list for PBXNativeTarget "COSlideMenuDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +527,7 @@
 				49B339A01BAED49E00277A89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

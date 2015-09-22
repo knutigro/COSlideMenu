@@ -8,25 +8,31 @@
 
 import UIKit
 
-class DemoSlideMenuController: COSlideMenuController {
+class SlideMenuController: COSlideMenuController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.menuViewController = storyboard?.instantiateViewControllerWithIdentifier("MenuViewController")
-        self.mainViewController = storyboard?.instantiateViewControllerWithIdentifier("NavigationViewController")
-        if let navigationController = self.mainViewController as? UINavigationController {
-            navigationController.viewControllers.first?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-ico"), style: .Plain, target: self, action: Selector("didTapLeftBarButton:"))
-        }
+        let menuController = storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
+        menuController?.delegate = self
+        self.menuViewController = menuController
         
+        setMainController(storyboard!.instantiateViewControllerWithIdentifier("AboutViewController"))
         self.backgroundImage = UIImage(named: "cloud")
         self.delegate = self
     }
+    
+    func setMainController(controller: UIViewController) {
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.viewControllers.first?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-ico"), style: .Plain, target: self, action: Selector("didTapLeftBarButton:"))
+        self.mainViewController = navigationController
+    }
 }
+
 
 // MARK: Actions
 
-extension DemoSlideMenuController {
+extension SlideMenuController {
     @IBAction func didTapLeftBarButton(sender: AnyObject?) {
         toggleMenu()
     }
@@ -34,7 +40,7 @@ extension DemoSlideMenuController {
 
 // MARK: COSlideMenuDelegate
 
-extension DemoSlideMenuController: COSlideMenuDelegate {
+extension SlideMenuController: COSlideMenuDelegate {
     func willOpenMenu() {
         print("willOpenMenu")
     }
@@ -50,4 +56,18 @@ extension DemoSlideMenuController: COSlideMenuDelegate {
     func didCloseMenu() {
         print("didCloseMenu")
     }
+}
+
+extension SlideMenuController: MenuControllerDelegate {
+    func menuViewController(controller: MenuViewController, didSelectIndex index: Int) {
+        switch index {
+        case 1:
+            setMainController(storyboard!.instantiateViewControllerWithIdentifier("AboutViewController"))
+        case 2:
+            setMainController(storyboard!.instantiateViewControllerWithIdentifier("SettingsViewController"))
+        default:
+            return
+        }
+    }
+
 }

@@ -13,9 +13,11 @@
 		49B3397E1BAED49E00277A89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B3397C1BAED49E00277A89 /* LaunchScreen.storyboard */; };
 		49B339891BAED49E00277A89 /* COSlideMenuDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339881BAED49E00277A89 /* COSlideMenuDemoTests.swift */; };
 		49B339941BAED49E00277A89 /* COSlideMenuDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339931BAED49E00277A89 /* COSlideMenuDemoUITests.swift */; };
-		49B339A61BAED5B300277A89 /* COSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A51BAED5B300277A89 /* COSlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
 		49B339A81BAF388900277A89 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A71BAF388900277A89 /* SlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
 		49B339AA1BAF4C9C00277A89 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A91BAF4C9C00277A89 /* MenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		49C37FE71BB1A06B00106E44 /* COSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C37FE61BB1A06B00106E44 /* COSlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
+		49C37FEA1BB1A08000106E44 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 49C37FE81BB1A08000106E44 /* LICENSE */; settings = {ASSET_TAGS = (); }; };
+		49C37FEB1BB1A08000106E44 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 49C37FE91BB1A08000106E44 /* README.md */; settings = {ASSET_TAGS = (); }; };
 		49D36BCD1BB13A48009262F6 /* SelectAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D36BCC1BB13A48009262F6 /* SelectAnimationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		49D36BCF1BB13E9C009262F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D36BCE1BB13E9C009262F6 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -50,10 +52,11 @@
 		49B3398F1BAED49E00277A89 /* COSlideMenuDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = COSlideMenuDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B339931BAED49E00277A89 /* COSlideMenuDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COSlideMenuDemoUITests.swift; sourceTree = "<group>"; };
 		49B339951BAED49E00277A89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49B339A51BAED5B300277A89 /* COSlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COSlideMenuController.swift; sourceTree = "<group>"; };
 		49B339A71BAF388900277A89 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		49B339A91BAF4C9C00277A89 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		49C37FE41BB19CF600106E44 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		49C37FE61BB1A06B00106E44 /* COSlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COSlideMenuController.swift; sourceTree = "<group>"; };
+		49C37FE81BB1A08000106E44 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		49C37FE91BB1A08000106E44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		49D36BCC1BB13A48009262F6 /* SelectAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAnimationViewController.swift; sourceTree = "<group>"; };
 		49D36BCE1BB13E9C009262F6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,7 +89,8 @@
 		49B339671BAED49E00277A89 = {
 			isa = PBXGroup;
 			children = (
-				49C37FE41BB19CF600106E44 /* README.md */,
+				49C37FE81BB1A08000106E44 /* LICENSE */,
+				49C37FE91BB1A08000106E44 /* README.md */,
 				49B339721BAED49E00277A89 /* COSlideMenuDemo */,
 				49B339871BAED49E00277A89 /* COSlideMenuDemoTests */,
 				49B339921BAED49E00277A89 /* COSlideMenuDemoUITests */,
@@ -107,7 +111,7 @@
 		49B339721BAED49E00277A89 /* COSlideMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
-				49B339A41BAED5B300277A89 /* COSlideMenu */,
+				49C37FE51BB1A06B00106E44 /* COSlideMenu */,
 				49B339731BAED49E00277A89 /* AppDelegate.swift */,
 				49B339A71BAF388900277A89 /* SlideMenuController.swift */,
 				49B339A91BAF4C9C00277A89 /* MenuViewController.swift */,
@@ -139,13 +143,14 @@
 			path = COSlideMenuDemoUITests;
 			sourceTree = "<group>";
 		};
-		49B339A41BAED5B300277A89 /* COSlideMenu */ = {
+		49C37FE51BB1A06B00106E44 /* COSlideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				49B339A51BAED5B300277A89 /* COSlideMenuController.swift */,
+				49C37FE61BB1A06B00106E44 /* COSlideMenuController.swift */,
 			);
-			path = COSlideMenu;
-			sourceTree = SOURCE_ROOT;
+			name = COSlideMenu;
+			path = ../../COSlideMenu;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -252,6 +257,7 @@
 			files = (
 				49B3397E1BAED49E00277A89 /* LaunchScreen.storyboard in Resources */,
 				49B3397B1BAED49E00277A89 /* Assets.xcassets in Resources */,
+				49C37FEA1BB1A08000106E44 /* LICENSE in Resources */,
 				49B339791BAED49E00277A89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,9 +285,10 @@
 			files = (
 				49B339AA1BAF4C9C00277A89 /* MenuViewController.swift in Sources */,
 				49D36BCD1BB13A48009262F6 /* SelectAnimationViewController.swift in Sources */,
-				49B339A61BAED5B300277A89 /* COSlideMenuController.swift in Sources */,
 				49B339741BAED49E00277A89 /* AppDelegate.swift in Sources */,
+				49C37FEB1BB1A08000106E44 /* README.md in Sources */,
 				49B339A81BAF388900277A89 /* SlideMenuController.swift in Sources */,
+				49C37FE71BB1A06B00106E44 /* COSlideMenuController.swift in Sources */,
 				49D36BCF1BB13E9C009262F6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

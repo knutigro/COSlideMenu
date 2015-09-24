@@ -26,7 +26,7 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: Public
     
     weak var delegate: COSlideMenuDelegate?
-    var menuAnimation = MenuAnimation.Alpha3D
+    var menuAnimation = MenuAnimation.Slide
     
     var menuViewController: UIViewController?  {
         willSet {
@@ -52,18 +52,11 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
                     closeMenu()
                 }
             }
-            if let mainViewController = self.mainViewController {
-                mainViewController.willMoveToParentViewController(nil)
-                mainViewController.removeFromParentViewController()
-                mainViewController.view.removeFromSuperview()
-            }
         }
         didSet {
             if let mainViewController = self.mainViewController {
-                mainContainer.view.frame = self.view.bounds;
-                mainContainer.addChildViewController(mainViewController)
-                mainContainer.view.addSubview(mainViewController.view)
-                mainContainer.didMoveToParentViewController(mainViewController)
+                mainContainer.setViewControllers([mainViewController], animated: false)
+                mainViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-ico"), style: .Plain, target: self, action: Selector("didTapLeftBarButton:"))
             }
             
             if (CGRectGetMinX(mainContainer.view.frame) == distanceOpenMenu) {
@@ -85,7 +78,7 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: Private
     
-    private var mainContainer: UIViewController!
+    private var mainContainer: UINavigationController!
     private var menuContainer: UIViewController!
     private var tapGestureRecognizer: UITapGestureRecognizer?
     private var bgImageContainer: UIImageView!
@@ -115,12 +108,13 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(menuContainer.view)
         menuContainer.didMoveToParentViewController(self)
         
-        mainContainer = UIViewController()
+        mainContainer = UINavigationController(rootViewController: UIViewController())
         mainContainer.view.frame = self.view.bounds
         mainContainer.view.backgroundColor = UIColor.clearColor()
         addChildViewController(mainContainer)
         view.addSubview(mainContainer.view)
         mainContainer.didMoveToParentViewController(self)
+
         
         enablePan = true
     }
@@ -140,6 +134,14 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
             let layer = menuContainer.view.layer
             layer.transform = CATransform3DIdentity
         }
+    }
+}
+
+// MARK: Actions
+
+extension SlideMenuController {
+    @IBAction func didTapLeftBarButton(sender: AnyObject?) {
+        toggleMenu()
     }
 }
 
@@ -323,7 +325,7 @@ extension COSlideMenuController {
             case .Alpha3D:
                 set3DMenuVisible(visible, animated: animated)
             case .Slide:
-                print("Slide not implemented yet")
+                setSlideMenuVisible(visible, animated: animated)
         }
     }
     
@@ -332,7 +334,7 @@ extension COSlideMenuController {
         case .Alpha3D:
             setPan3DMenuAction(panState, offset: offset)
         case .Slide:
-            print("Slide not implemented yet")
+            setPanSlideMenuAction(panState, offset: offset)
         }
     }
 }
@@ -413,6 +415,56 @@ extension COSlideMenuController {
         layer.transform = t
     }
 
+}
+
+// MARK: Slide Animations
+
+extension COSlideMenuController {
+    
+    func setPanSlideMenuAction(panState: UIGestureRecognizerState, offset: CGFloat) {
+        
+        print("offset \(offset)")
+//        fMain.origin.x += offset
+        
+        if panState == .Changed {
+        } else if (panState == .Ended) || (panState == .Cancelled) {
+            let fMain = mainContainer.view.frame
+            let isOpening = (fMain.origin.x >= distanceOpenMenu / 2)
+            var duration: CGFloat = 0.3
+            
+            if (isOpening) {
+                duration = ((distanceOpenMenu - fMain.origin.x) * 0.3 ) / distanceOpenMenu
+            } else {
+                duration = ((fMain.origin.x) * 0.3 ) / distanceOpenMenu
+            }
+            animateViewSlide(menuContainer.view, toAngle: 0, toAlpha: 0, duration: Double(duration), delay: 0.1, completion:nil)
+        }
+    }
+    
+    func setSlideMenuVisible(visible: Bool, animated: Bool) {
+        if visible == true {
+            if animated == true {
+            } else {
+            }
+        } else {
+            if animated == true {
+            } else {
+            }
+        }
+    }
+    
+    func animateViewSlide(view: UIView, toAngle: Double, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
+        
+        UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { () -> Void in
+            
+            if toAngle == 0 {
+            } else {
+            }
+            
+            }) { (finished: Bool) -> Void in
+                completion?(finished)
+        }
+    }
 }
 
 

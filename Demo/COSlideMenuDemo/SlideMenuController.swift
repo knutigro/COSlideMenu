@@ -17,26 +17,13 @@ class SlideMenuController: COSlideMenuController {
         menuController?.delegate = self
         self.menuViewController = menuController
         
-        setMainController(storyboard!.instantiateViewControllerWithIdentifier("AboutViewController"))
         self.backgroundImage = UIImage(named: "cloud")
         self.delegate = self
-    }
-    
-    func setMainController(controller: UIViewController) {
-        let navigationController = UINavigationController(rootViewController: controller)
-        navigationController.viewControllers.first?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu-ico"), style: .Plain, target: self, action: Selector("didTapLeftBarButton:"))
-        self.mainViewController = navigationController
+        
+        self.mainViewController = storyboard!.instantiateViewControllerWithIdentifier("AboutViewController")
     }
 }
 
-
-// MARK: Actions
-
-extension SlideMenuController {
-    @IBAction func didTapLeftBarButton(sender: AnyObject?) {
-        toggleMenu()
-    }
-}
 
 // MARK: COSlideMenuDelegate
 
@@ -62,9 +49,9 @@ extension SlideMenuController: MenuControllerDelegate {
     func menuViewController(controller: MenuViewController, didSelectIndex index: Int) {
         switch index {
         case 1:
-            setMainController(storyboard!.instantiateViewControllerWithIdentifier("AboutViewController"))
+            self.mainViewController = storyboard!.instantiateViewControllerWithIdentifier("AboutViewController")
         case 2:
-            setMainController(storyboard!.instantiateViewControllerWithIdentifier("SettingsViewController"))
+            self.mainViewController = storyboard!.instantiateViewControllerWithIdentifier("SettingsViewController")
         default:
             return
         }

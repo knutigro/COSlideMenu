@@ -16,32 +16,11 @@ class SlideMenuController: COSlideMenuController {
         let menuController = storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
         menuController?.delegate = self
         self.menuViewController = menuController
-        
+        self.delegate = menuController
+
         self.backgroundImage = UIImage(named: "cloud")
-        self.delegate = self
         
         self.mainViewController = storyboard!.instantiateViewControllerWithIdentifier("AboutViewController")
-    }
-}
-
-
-// MARK: COSlideMenuDelegate
-
-extension SlideMenuController: COSlideMenuDelegate {
-    func willOpenMenu() {
-        print("willOpenMenu")
-    }
-    
-    func didOpenMenu() {
-        print("didOpenMenu")
-    }
-
-    func willCloseMenu() {
-        print("willCloseMenu")
-    }
-
-    func didCloseMenu() {
-        print("didCloseMenu")
     }
 }
 
@@ -51,10 +30,25 @@ extension SlideMenuController: MenuControllerDelegate {
         case 1:
             self.mainViewController = storyboard!.instantiateViewControllerWithIdentifier("AboutViewController")
         case 2:
-            self.mainViewController = storyboard!.instantiateViewControllerWithIdentifier("SettingsViewController")
+            if let settingsViewController = storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as? SettingsViewController {
+                settingsViewController.menuAnimation = self.menuAnimation
+                settingsViewController.delegate = self
+                self.mainViewController = settingsViewController
+            }
         default:
             return
         }
     }
 
 }
+
+// MARK: SettingsDelegate
+
+extension SlideMenuController: SettingsDelegate {
+    
+    func settingsViewControllerDidChange(controller: SettingsViewController) {
+        self.menuAnimation = controller.menuAnimation
+    }
+
+}
+

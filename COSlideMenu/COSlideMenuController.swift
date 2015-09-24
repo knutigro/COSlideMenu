@@ -26,7 +26,11 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: Public
     
     weak var delegate: COSlideMenuDelegate?
-    var menuAnimation = MenuAnimation.Slide
+    var menuAnimation = MenuAnimation.Alpha3D {
+        didSet {
+            resetMenu()
+        }
+    }
     
     var menuViewController: UIViewController?  {
         willSet {
@@ -165,7 +169,7 @@ extension COSlideMenuController {
         var toFrame = mainContainer.view.frame
         toFrame.origin.x = distanceOpenMenu
         
-        animateView(mainContainer.view, toFrame: toFrame, duration: 0.3, delay: 0) { (finished: Bool) -> Void in
+        animateView(mainContainer.view, toFrame: toFrame, duration: 0.2, delay: 0) { (finished: Bool) -> Void in
             delegate?.didOpenMenu?()
         }
         
@@ -184,7 +188,7 @@ extension COSlideMenuController {
         var toFrame = mainContainer.view.frame
         toFrame.origin.x = 0
         
-        animateView(mainContainer.view, toFrame: toFrame, duration: 0.3, delay: 0.2) { [weak self] (finished: Bool) -> Void in
+        animateView(mainContainer.view, toFrame: toFrame, duration: 0.2, delay: 0.2) { [weak self] (finished: Bool) -> Void in
             self?.removeTapGestures()
             self?.delegate?.didCloseMenu?()
         }
@@ -319,6 +323,10 @@ extension COSlideMenuController {
 // MARK: Menu Animations
 
 extension COSlideMenuController {
+    
+    func resetMenu() {
+        set3DMenuVisible(true, animated: false)
+    }
     
     func setMenuVisible(visible: Bool, animated: Bool) {
         switch menuAnimation {

@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol SettingsDelegate: class {
+    func settingsViewControllerDidChange(controller: SettingsViewController)
+}
+
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak private var animationLabel: UILabel?
     
+    weak var delegate: SettingsDelegate?
+
     var menuAnimation = MenuAnimation.Alpha3D {
         didSet {
             if let animationLabel = animationLabel {
@@ -39,5 +45,6 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: SelectAnimationDelegate {
     func selectAnimationViewController(controller: SelectAnimationViewController, didSelectMenuAnimation animation: MenuAnimation) {
         menuAnimation = animation
+        self.delegate?.settingsViewControllerDidChange(self)
     }
 }

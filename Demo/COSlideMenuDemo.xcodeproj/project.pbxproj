@@ -16,8 +16,6 @@
 		49B339A81BAF388900277A89 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A71BAF388900277A89 /* SlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
 		49B339AA1BAF4C9C00277A89 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B339A91BAF4C9C00277A89 /* MenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		49C37FE71BB1A06B00106E44 /* COSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C37FE61BB1A06B00106E44 /* COSlideMenuController.swift */; settings = {ASSET_TAGS = (); }; };
-		49C37FEA1BB1A08000106E44 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 49C37FE81BB1A08000106E44 /* LICENSE */; settings = {ASSET_TAGS = (); }; };
-		49C37FEB1BB1A08000106E44 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 49C37FE91BB1A08000106E44 /* README.md */; settings = {ASSET_TAGS = (); }; };
 		49D36BCD1BB13A48009262F6 /* SelectAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D36BCC1BB13A48009262F6 /* SelectAnimationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		49D36BCF1BB13E9C009262F6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D36BCE1BB13E9C009262F6 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -257,7 +255,6 @@
 			files = (
 				49B3397E1BAED49E00277A89 /* LaunchScreen.storyboard in Resources */,
 				49B3397B1BAED49E00277A89 /* Assets.xcassets in Resources */,
-				49C37FEA1BB1A08000106E44 /* LICENSE in Resources */,
 				49B339791BAED49E00277A89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +283,6 @@
 				49B339AA1BAF4C9C00277A89 /* MenuViewController.swift in Sources */,
 				49D36BCD1BB13A48009262F6 /* SelectAnimationViewController.swift in Sources */,
 				49B339741BAED49E00277A89 /* AppDelegate.swift in Sources */,
-				49C37FEB1BB1A08000106E44 /* README.md in Sources */,
 				49B339A81BAF388900277A89 /* SlideMenuController.swift in Sources */,
 				49C37FE71BB1A06B00106E44 /* COSlideMenuController.swift in Sources */,
 				49D36BCF1BB13E9C009262F6 /* SettingsViewController.swift in Sources */,

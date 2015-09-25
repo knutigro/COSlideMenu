@@ -26,7 +26,7 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: Public
     
     weak var delegate: COSlideMenuDelegate?
-    var menuAnimation = MenuAnimation.Alpha3D {
+    var menuAnimation = MenuAnimation.Slide {
         didSet {
             resetMenu()
         }
@@ -94,7 +94,7 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: Setup
     
-    func setup() {
+    private func setup() {
         view.backgroundColor = UIColor.blackColor()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didRotate:"), name: UIDeviceOrientationDidChangeNotification, object: nil)
@@ -201,7 +201,7 @@ extension COSlideMenuController {
 
 extension COSlideMenuController {
     
-    func addTapGestures() {
+    private func addTapGestures() {
         if tapGestureRecognizer == nil {
             self.mainViewController?.view.userInteractionEnabled = false
             tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("tapMainAction:"))
@@ -209,7 +209,7 @@ extension COSlideMenuController {
         }
     }
     
-    func removeTapGestures() {
+    private func removeTapGestures() {
         if let tapGestureRecognizer = self.tapGestureRecognizer {
             mainContainer.view.removeGestureRecognizer(tapGestureRecognizer)
         }
@@ -227,7 +227,7 @@ extension COSlideMenuController {
 
 extension COSlideMenuController {
     
-    var shouldOpen: Bool {
+    private var shouldOpen: Bool {
         get {
             return (mainContainer.view.frame.origin.x >= distanceOpenMenu / 2)
         }
@@ -246,7 +246,7 @@ extension COSlideMenuController {
         }
     }
 
-    func addPanGestures() {
+    private func addPanGestures() {
         if panGestureRecognizer == nil {
             panGestureRecognizer = UIPanGestureRecognizer(target: self, action: Selector("panDetected:"))
             panGestureRecognizer?.delegate = self;
@@ -254,7 +254,7 @@ extension COSlideMenuController {
         }
     }
     
-    func removePanGestures() {
+    private func removePanGestures() {
         if let panGestureRecognizer = self.panGestureRecognizer {
             mainContainer.view.removeGestureRecognizer(panGestureRecognizer)
         }
@@ -315,7 +315,7 @@ extension COSlideMenuController {
 
 extension COSlideMenuController {
     
-    func animateView(view: UIView, toFrame: CGRect, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
+    private func animateView(view: UIView, toFrame: CGRect, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
         UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { () -> Void in
             view.frame = toFrame
             }) { (finished: Bool) -> Void in
@@ -331,6 +331,7 @@ extension COSlideMenuController {
     
     func resetMenu() {
         set3DMenuVisible(true, animated: false)
+        setSlideMenuVisible(true, animated: false)
     }
     
     func setMenuVisible(visible: Bool, animated: Bool) {
@@ -357,7 +358,7 @@ extension COSlideMenuController {
 
 extension COSlideMenuController {
     
-    func setPan3DMenuAction(panState: UIGestureRecognizerState, offset: CGFloat) {
+    private func setPan3DMenuAction(panState: UIGestureRecognizerState, offset: CGFloat) {
         if panState == .Changed {
             var fMain = mainContainer.view.frame
             fMain.origin.x += offset
@@ -369,12 +370,11 @@ extension COSlideMenuController {
         } else if (panState == .Ended) || (panState == .Cancelled) {
             let fMain = mainContainer.view.frame
             
-            let shouldOpen = self.shouldOpen
             let new3dSeg: CGFloat!
             let newAngle: Double!
             let newAlpha: CGFloat!
 
-            if (shouldOpen) {
+            if (self.shouldOpen) {
                 new3dSeg = ((distanceOpenMenu - fMain.origin.x) * 0.3) / distanceOpenMenu
                 newAngle = 0.0
                 newAlpha = 1.0
@@ -388,7 +388,7 @@ extension COSlideMenuController {
         }
     }
     
-    func set3DMenuVisible(visible: Bool, animated: Bool) {
+    private func set3DMenuVisible(visible: Bool, animated: Bool) {
         if visible == true {
             if animated == true {
                 animateView3D(menuContainer.view, toAngle: 0, toAlpha: 1.0, duration: 0.3, delay: 0.1, completion:nil)
@@ -406,7 +406,7 @@ extension COSlideMenuController {
         }
     }
     
-    func animateView3D(view: UIView, toAngle: Double, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
+    private func animateView3D(view: UIView, toAngle: Double, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
         
         UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { [weak self] () -> Void in
 
@@ -423,7 +423,7 @@ extension COSlideMenuController {
         }
     }
     
-    func rotate3DView(view: UIView, toAngle: Double) {
+    private func rotate3DView(view: UIView, toAngle: Double) {
         let layer = view.layer
         layer.zPosition = -1000
         var t = CATransform3DIdentity
@@ -438,46 +438,51 @@ extension COSlideMenuController {
 
 extension COSlideMenuController {
     
-    func setPanSlideMenuAction(panState: UIGestureRecognizerState, offset: CGFloat) {
+    private func setPanSlideMenuAction(panState: UIGestureRecognizerState, offset: CGFloat) {
         
         let slidePosition = mainContainer.view.frame.origin.x + offset
-        _ = (distanceOpenMenu - slidePosition)
+        let offset: CGFloat = -((distanceOpenMenu - slidePosition) * 0.2)
+        
+        print("offset \(offset)")
         
         if panState == .Changed {
+            menuContainer.view.frame = CGRectMake(offset, view.frame.origin.y, view.frame.size.width, view.frame.size.height)
         } else if (panState == .Ended) || (panState == .Cancelled) {
             let fMain = mainContainer.view.frame
-            let isOpening = (fMain.origin.x >= distanceOpenMenu / 2)
-            var duration: CGFloat = 0.3
+            let duration: CGFloat!
             
-            if (isOpening) {
+            if (shouldOpen) {
                 duration = ((distanceOpenMenu - fMain.origin.x) * 0.3 ) / distanceOpenMenu
             } else {
                 duration = ((fMain.origin.x) * 0.3 ) / distanceOpenMenu
             }
-            animateViewSlide(menuContainer.view, toOffset: 0, toAlpha: 0, duration: Double(duration), delay: 0.1, completion:nil)
+            animateViewSlide(menuContainer.view, toOffset: offset, toAlpha: 0, duration: Double(duration), delay: 0.1, completion:nil)
         }
     }
     
-    func setSlideMenuVisible(visible: Bool, animated: Bool) {
+    private func setSlideMenuVisible(visible: Bool, animated: Bool) {
+        
         if visible == true {
             if animated == true {
+                animateViewSlide(menuContainer.view, toOffset: 0, toAlpha: 0.3, duration: 0.3, delay: 0.0, completion:nil)
             } else {
+                menuContainer.view.frame = CGRectMake(0, view.frame.origin.y, view.frame.size.width, view.frame.size.height)
             }
         } else {
+            let offset = -(distanceOpenMenu * 0.2)
             if animated == true {
+                animateViewSlide(menuContainer.view, toOffset: offset, toAlpha: 0.3, duration: 0.3, delay: 0.1, completion:nil)
             } else {
+                menuContainer.view.frame = CGRectMake(offset, view.frame.origin.y, view.frame.size.width, view.frame.size.height)
             }
         }
     }
     
-    func animateViewSlide(view: UIView, toOffset: Double, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
+    private func animateViewSlide(view: UIView, toOffset: CGFloat, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
         
         UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { () -> Void in
             
-            if toOffset == 0 {
-            } else {
-            }
-            
+            view.frame = CGRectMake(toOffset, view.frame.origin.y, view.frame.size.width, view.frame.size.height)
             }) { (finished: Bool) -> Void in
                 completion?(finished)
         }

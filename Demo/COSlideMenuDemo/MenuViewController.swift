@@ -31,19 +31,15 @@ class MenuViewController: UITableViewController {
 
 extension MenuViewController: COSlideMenuDelegate {
     func willOpenMenu() {
-        print("willOpenMenu")
     }
     
     func didOpenMenu() {
-        print("didOpenMenu")
     }
     
     func willCloseMenu() {
-        print("willCloseMenu")
     }
     
     func didCloseMenu() {
-        print("didCloseMenu")
     }
 }
 

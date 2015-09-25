@@ -226,6 +226,13 @@ extension COSlideMenuController {
 // MARK: Pan Gesture Recognizer
 
 extension COSlideMenuController {
+    
+    var shouldOpen: Bool {
+        get {
+            return (mainContainer.view.frame.origin.x >= distanceOpenMenu / 2)
+        }
+    }
+    
     var enablePan: Bool {
         set {
             if (enablePan == true) {
@@ -273,13 +280,11 @@ extension COSlideMenuController {
             }
             
             var fMain = mainContainer.view.frame
-            let offsetView = fMain.origin.x + offset
-            
-            let min: CGFloat = 0
-            let max = distanceOpenMenu
-            if (offsetView <= min) || (offsetView >= max) {  return  }
-            
             fMain.origin.x += offset
+            
+            let isOutsideMenuBounds = (fMain.origin.x <= 0) || (fMain.origin.x >= distanceOpenMenu)
+            if (isOutsideMenuBounds) {  return  }
+            
             mainContainer.view.frame = fMain
             
             setPanMenuAction(panGestureRecognizer!.state, offset: offset)
@@ -287,9 +292,9 @@ extension COSlideMenuController {
         } else if (panGestureRecognizer?.state == .Ended) || (panGestureRecognizer?.state == .Cancelled) {
 
             var fMain = mainContainer.view.frame
-            var newSeg: CGFloat = 1.0
+            let newSeg: CGFloat!
             
-            if (fMain.origin.x >= distanceOpenMenu / 2) {
+            if (shouldOpen) {
                 addTapGestures()
                 newSeg = (distanceOpenMenu - fMain.origin.x) / distanceOpenMenu
                 fMain.origin.x = distanceOpenMenu
@@ -357,24 +362,28 @@ extension COSlideMenuController {
             var fMain = mainContainer.view.frame
             fMain.origin.x += offset
             let newAngle = ((Double(distanceOpenMenu - fMain.origin.x) * kDefaultAngle3DMenu) / Double(distanceOpenMenu)) * -1
-            rotate3DView(menuContainer.view, toAngle: newAngle)
             let newAlpha = ((0.7 * (fMain.origin.x)) / distanceOpenMenu) + 0.3;
+
+            rotate3DView(menuContainer.view, toAngle: newAngle)
             menuContainer.view.alpha = newAlpha
-            
         } else if (panState == .Ended) || (panState == .Cancelled) {
             let fMain = mainContainer.view.frame
-            var new3dSeg: CGFloat = 0.3
-            var closeMenu = true
             
-            if (fMain.origin.x >= distanceOpenMenu / 2) {
-                new3dSeg = ((distanceOpenMenu - fMain.origin.x) * 0.3 ) / distanceOpenMenu
-                closeMenu = false
+            let shouldOpen = self.shouldOpen
+            let new3dSeg: CGFloat!
+            let newAngle: Double!
+            let newAlpha: CGFloat!
+
+            if (shouldOpen) {
+                new3dSeg = ((distanceOpenMenu - fMain.origin.x) * 0.3) / distanceOpenMenu
+                newAngle = 0.0
+                newAlpha = 1.0
             } else {
                 new3dSeg = ((fMain.origin.x) * 0.3 ) / distanceOpenMenu
+                newAngle = -kDefaultAngle3DMenu
+                newAlpha = 0.3
             }
             
-            let newAngle = (closeMenu == true) ? -kDefaultAngle3DMenu : 0.0
-            let newAlpha: CGFloat = (closeMenu == true) ? 0.3 : 1.0
             animateView3D(menuContainer.view, toAngle: newAngle, toAlpha: newAlpha, duration: Double(new3dSeg), delay: 0.1, completion:nil)
         }
     }
@@ -431,8 +440,8 @@ extension COSlideMenuController {
     
     func setPanSlideMenuAction(panState: UIGestureRecognizerState, offset: CGFloat) {
         
-        print("offset \(offset)")
-//        fMain.origin.x += offset
+        let slidePosition = mainContainer.view.frame.origin.x + offset
+        _ = (distanceOpenMenu - slidePosition)
         
         if panState == .Changed {
         } else if (panState == .Ended) || (panState == .Cancelled) {
@@ -445,7 +454,7 @@ extension COSlideMenuController {
             } else {
                 duration = ((fMain.origin.x) * 0.3 ) / distanceOpenMenu
             }
-            animateViewSlide(menuContainer.view, toAngle: 0, toAlpha: 0, duration: Double(duration), delay: 0.1, completion:nil)
+            animateViewSlide(menuContainer.view, toOffset: 0, toAlpha: 0, duration: Double(duration), delay: 0.1, completion:nil)
         }
     }
     
@@ -461,11 +470,11 @@ extension COSlideMenuController {
         }
     }
     
-    func animateViewSlide(view: UIView, toAngle: Double, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
+    func animateViewSlide(view: UIView, toOffset: Double, toAlpha: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, completion: ((Bool) -> Void)?) {
         
         UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { () -> Void in
             
-            if toAngle == 0 {
+            if toOffset == 0 {
             } else {
             }
             

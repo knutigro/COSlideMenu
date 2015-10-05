@@ -25,14 +25,14 @@ public class COSlideMenuController: UIViewController, UIGestureRecognizerDelegat
     
     // MARK: Public
     
-    weak var delegate: COSlideMenuDelegate?
-    var menuAnimation = MenuAnimation.Slide {
+    public weak var delegate: COSlideMenuDelegate?
+    public var menuAnimation = MenuAnimation.Slide {
         didSet {
             resetMenu()
         }
     }
     
-    var menuViewController: UIViewController?  {
+    public var menuViewController: UIViewController?  {
         willSet {
             if let menuViewController = self.menuViewController {
                 menuViewController.willMoveToParentViewController(nil)
@@ -49,7 +49,7 @@ public class COSlideMenuController: UIViewController, UIGestureRecognizerDelegat
             }
         }
     }
-    var mainViewController: UIViewController? {
+    public var mainViewController: UIViewController? {
         willSet {
             if mainContainer == newValue {
                 if (CGRectGetMinX(mainContainer.view.frame) == distanceOpenMenu) {
@@ -69,12 +69,12 @@ public class COSlideMenuController: UIViewController, UIGestureRecognizerDelegat
         }
     }
     
-    var backgroundImage: UIImage? {
+    public var backgroundImage: UIImage? {
         get {  return bgImageContainer.image }
         set {  bgImageContainer.image = newValue }
     }
     
-    var backgroundImageContentMode = UIViewContentMode.ScaleAspectFill {
+    public var backgroundImageContentMode = UIViewContentMode.ScaleAspectFill {
         didSet {
             bgImageContainer.contentMode = backgroundImageContentMode
         }
@@ -153,7 +153,7 @@ extension COSlideMenuController {
 
 extension COSlideMenuController {
     
-    func toggleMenu() {
+    public func toggleMenu() {
         let fMain = mainContainer.view.frame
         if CGRectGetMinX(fMain) == distanceOpenMenu {
             closeMenu()
@@ -162,7 +162,7 @@ extension COSlideMenuController {
         }
     }
     
-    func openMenu() {
+    public func openMenu() {
         delegate?.willOpenMenu?()
         addTapGestures()
         
@@ -177,7 +177,7 @@ extension COSlideMenuController {
         setMenuVisible(true, animated: true)
     }
     
-    func closeMenu() {
+    public func closeMenu() {
         let delayInSeconds = 0.1
         
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
@@ -233,7 +233,7 @@ extension COSlideMenuController {
         }
     }
     
-    var enablePan: Bool {
+    public var enablePan: Bool {
         set {
             if (enablePan == true) {
                 addPanGestures()

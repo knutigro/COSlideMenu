@@ -143,7 +143,7 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
 
 // MARK: Actions
 
-extension SlideMenuController {
+extension COSlideMenuController {
     @IBAction func didTapLeftBarButton(sender: AnyObject?) {
         toggleMenu()
     }

@@ -8,14 +8,14 @@
 
 import UIKit
 
-@objc protocol COSlideMenuDelegate {
+@objc public protocol COSlideMenuDelegate {
     optional func willOpenMenu()
     optional func didOpenMenu()
     optional func willCloseMenu()
     optional func didCloseMenu()
 }
 
-enum MenuAnimation: String {
+public enum MenuAnimation: String {
     case Alpha3D = "Alpha3D"
     case Slide = "Slide"
     static let all = [MenuAnimation.Alpha3D, MenuAnimation.Slide]

@@ -21,7 +21,7 @@ enum MenuAnimation: String {
     static let all = [MenuAnimation.Alpha3D, MenuAnimation.Slide]
 }
 
-class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
+public class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     // MARK: Public
     
@@ -125,7 +125,7 @@ class COSlideMenuController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: View Lifecycle
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
